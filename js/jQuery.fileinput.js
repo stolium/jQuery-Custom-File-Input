@@ -58,6 +58,11 @@
 			
 		//create custom control container
 		var upload = $('<div class="customfile"></div>');
+		
+		//create label for input
+		var fileInputId = fileInput.attr('id');
+		var uploadLabel = $('<label for="' + fileInputId + '"></label>').appendTo(upload);
+		
 		//create custom control button
 		var uploadButton = $('<span class="customfile-button" aria-hidden="true">Browse</span>').appendTo(upload);
 		//create custom control feedback
@@ -71,12 +76,6 @@
 
 		//on mousemove, keep file input under the cursor to steal click
 		upload
-			.mousemove(function(e){
-				fileInput.css({
-					'left': e.pageX - upload.offset().left - fileInput.outerWidth() + 20, //position right side 20px right of cursor X)
-					'top': e.pageY - upload.offset().top - $(window).scrollTop() - 3
-				});
-			})
 			.insertAfter(fileInput); //insert after the input
 
 		fileInput.appendTo(upload);
